@@ -1,4 +1,5 @@
-
+rm(list=ls())
+setwd("~/Library/Mobile Documents/com~apple~CloudDocs/courses/2022 Spring/chengyu/shiny")
 load("mydict2.RData")
 
 compare_words=function(target_str,guess_str){
@@ -52,14 +53,6 @@ f.init5 = function(word_num,score,words){"1142"}
 
 f1 = function(word_num,scores.current,words,guess_number,myguesses,myfeedback){
 
-  word_num
-  myscore
-  words
-  guess_number
-  myguesses
-  myfeedback
-
-  possible=as.character(1:5)
   correct=rep(as.character(NA),4)
   chars = NA
   
@@ -83,7 +76,6 @@ f1 = function(word_num,scores.current,words,guess_number,myguesses,myfeedback){
       }
     }
     
-    possible=setdiff(possible,niw)
     if(length(niw)>0){
       for(j in 1:length(niw)){
         mymat[niw[j],]="no"
@@ -116,16 +108,9 @@ f1 = function(word_num,scores.current,words,guess_number,myguesses,myfeedback){
   } #end of i loop 
   
   
-  chars
-  possible
-  correct
-  mymat
-  
+
   chars.og=chars
   mymat.og=mymat
-  
-  
-  
   done=FALSE
   
   while(!done){
@@ -172,7 +157,7 @@ f2=f3=f4=f5=f1
 
 myseed=31428212 # seed will be changed for competition
 set.seed(myseed)
-n=1000
+n=10
 comp_words=mydict[sample(1:dim(mydict)[1],n,prob=mydict$freq,replace=FALSE),"sig"]
 guesses=array(as.character(NA),dim=c(n,10,5))
 feedback=array(as.character(NA),dim=c(n,10,4,5))
@@ -204,9 +189,6 @@ for(word_num in 1:n){
     
     scores[word_num,i]=guess_number
   }
-  
-  print(word_num)
-  flush.console()
   
 }
 
